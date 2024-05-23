@@ -1,6 +1,4 @@
-#
-
-REPO_URL="http://github.com/reecertv/..."
+REPO_URL="https://github.com/reecertv/hypr-conf.git"
 TEMP_DIR=$(mktemp -d)
 
 git clone "$REPO_URL" "$TEMP_DIR"
@@ -11,7 +9,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # for each src
-for file in "$TEMP_DIR"
+for file in "$TEMP_DIR"/src/*
 do
     DEST_DIR=$(sed -n '1s/.*\$\$\([^$]*\)\$\$.*/\1/p' "$file")
     
@@ -24,3 +22,5 @@ do
     mkdir -p "$DEST_DIR"
     cp "$file" "$DEST_DIR"
 done
+
+echo "Done!"
